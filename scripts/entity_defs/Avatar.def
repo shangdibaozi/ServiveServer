@@ -1,0 +1,47 @@
+<root>
+
+	<Interfaces>
+		
+	</Interfaces>
+
+	<Components>
+		<opRoom>
+			<Type> OpRoom </Type>
+			<Persistent> true </Persistent>
+		</opRoom>
+	</Components>
+
+	<Properties>
+		<dbid>
+			<Type> DBID </Type>
+			<Flags> BASE </Flags>
+			<Persistent> false </Persistent>
+		</dbid>
+		<!-- 昵称 -->
+		<nickName>
+            <Type> UNICODE </Type>
+            <Flags> BASE </Flags>
+            <Persistent> true </Persistent>
+            <DatabaseLength> 50 </DatabaseLength>
+		</nickName>
+		
+	</Properties>
+
+	<BaseMethods>
+		
+	</BaseMethods>
+	
+	<CellMethods>
+		
+	</CellMethods>
+
+	<ClientMethods>
+		<onKillServer>
+			<Arg> UINT8 </Arg>
+		</onKillServer>
+
+		<onAvatarEnabled>
+			
+		</onAvatarEnabled>
+	</ClientMethods>
+</root>

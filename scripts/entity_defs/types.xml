@@ -1,0 +1,40 @@
+<root>
+	<DBID>				UINT64		</DBID>
+	<UUID>				UINT64		</UUID>
+	<SPACE_KEY> 		UINT64 		</SPACE_KEY>
+	<ROOM_TYPE> 		UINT32 		</ROOM_TYPE>
+	<ENTITY_ID>			INT32		</ENTITY_ID>
+	<POSITION3D>		VECTOR3		</POSITION3D>
+	<DIRECTION3D>		VECTOR3		</DIRECTION3D>
+	<STALL_ID>			UINT32 		</STALL_ID>
+
+	<DBID_ARRAY> ARRAY <of> DBID </of> </DBID_ARRAY>
+	<UUID_ARRAY> ARRAY <of> UUID </of> </UUID_ARRAY>
+	<UINT8_ARRAY> ARRAY <of> UINT8 </of> </UINT8_ARRAY>
+	<UINT16_ARRAY> ARRAY <of> UINT16 </of> </UINT16_ARRAY>
+	<UINT32_ARRAY> ARRAY <of> UINT32 </of> </UINT32_ARRAY>
+	<FLOAT_ARRAY> ARRAY <of> FLOAT </of> </FLOAT_ARRAY>
+
+	<AVATAR_INFOS>	FIXED_DICT
+		<Properties>
+			<!-- 表示是否逻辑删除，0-正常，1-逻辑删除 -->
+			<isDel>
+				<Type> UINT8 </Type>
+			</isDel>
+			<dbid>
+				<Type>	DBID	</Type>
+			</dbid>
+			<name>
+				<Type>	UNICODE	</Type>
+				<DatabaseLength> 256 </DatabaseLength>
+			</name>
+			<roleType>
+				<Type> UINT8 </Type>
+			</roleType>
+		</Properties>
+	</AVATAR_INFOS>
+	<AVATAR_INFOS_LIST> ARRAY <of> AVATAR_INFOS </of> </AVATAR_INFOS_LIST>
+	
+	
+
+</root>

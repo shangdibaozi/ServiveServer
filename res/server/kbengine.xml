@@ -1,0 +1,251 @@
+<root>
+	<!--
+		个性化服务端配置({assets}/res/server/kbengine.xml)
+
+		如果你需要改变引擎设置, 请在({assets}/res/server/kbengine.xml)中覆盖kbe/res/server/kbengine_defaults.xml的对应参数来修改, 
+		这样的好处是不会破坏引擎的默认设置，在你更新引擎时也不会产生冲突，以及在多个逻辑项目时不会影响到其他的项目设置。
+		详细说明请参考：http://kbengine.github.io/cn/docs/configuration/kbengine.html
+	-->
+	<!-- 游戏逻辑处理频率HZ
+		(Update frequency process, HZ)
+	-->
+	<gameUpdateHertz> 30 </gameUpdateHertz>
+	<trace_packet>
+		<debug_type> 0 </debug_type>
+	</trace_packet>
+	
+	<publish>
+		<!-- 发布状态, 可在脚本中获取该值。 KBEngine.publish()
+			(apps released state, This value can be obtained in the script. KBEngine.publish())
+			Type: Integer8
+			0 : debug
+			1 : release
+			其他自定义(Other custom)
+		-->
+		<state> 0 </state>
+
+		<!-- 脚本层发布的版本号
+			(Script layer released version number)
+		 -->
+		<script_version> 0.1.0 </script_version>
+	</publish>
+
+	<channelCommon> 
+		<!-- 最后一次通信时间超过此时间则被认定为超时通道， 服务器将踢出该通道（秒）
+			(If long (configurable value) no communication, channel will be kicked out of the server.)
+		-->
+		<timeout> 
+			<internal> 60.0 </internal>
+			<external> 60.0 </external>
+		</timeout>
+		
+		<!-- TCP socket读写缓冲大小 
+			(socket send/recv buffer size)
+		-->
+		<readBufferSize> 
+			<internal>	16777216	</internal> 			<!-- 16M -->
+			<external>	0			</external>				<!-- 系统默认(system default) -->
+		</readBufferSize>
+		<writeBufferSize> 
+			<internal>	16777216	</internal>				<!-- 16M -->
+			<external>	0			</external>				<!-- 系统默认(system default) -->
+		</writeBufferSize>
+		
+		<!-- 发送与接收窗口溢出值，0无限制
+			(the value of the send/receive window overflow, 0 is unlimited)
+		-->
+		<windowOverflow>
+			<send>
+				<!-- 一个tick内发送的字节数溢出限制 
+					(A tick, the value of the sent window overflow, 0 is unlimited)
+				-->
+				<tickSentBytes>
+					<internal>	0			</internal>
+					<external>	0			</external>
+				</tickSentBytes>
+				<messages>
+					<critical>	1024		</critical>
+					<internal>	65535		</internal>
+					<external>	512		</external>
+				</messages>
+				<bytes>
+					<internal>	0			</internal>
+					<external>	1048576	</external>
+				</bytes>
+			</send>
+			
+			<receive>
+				<messages>
+					<critical>	1024		</critical>
+					<internal>	65535		</internal>
+					<external>	1024			</external>
+				</messages>
+				<bytes>
+					<internal>	0			</internal>
+					<external>	2048		</external>
+				</bytes>
+			</receive>
+		</windowOverflow>
+		
+		<!-- 加密通信，只对外部通道
+			(Encrypted communication, channel-external only)
+			
+			可选择的加密方式(Optional encryption):
+				0: 无加密(No Encryption)
+				1: Blowfish
+				2: RSA (res\key\kbengine_private.key)
+		 -->
+		<encrypt_type> 1 </encrypt_type>
+
+		<reliableUDP>
+			<!-- Equivalent to TCP RCV_BUF, unit is the number of UDP-packages -->
+			<readPacketsQueueSize>
+				<internal>				1024		</internal>
+				<external>				128			</external>
+			</readPacketsQueueSize>
+
+			<!-- Equivalent to TCP SND_BU, unit is the number of UDP-packages -->
+			<writePacketsQueueSize>
+				<internal>				1024		</internal>
+				<external>				128			</external>
+			</writePacketsQueueSize>
+
+			<!-- internal update timer interval in millisec, 0 is default(100millisec)  -->
+			<tickInterval>				10			</tickInterval>
+			<!-- Retransmission TimeOut(millisec)  -->
+			<minRTO>					10			</minRTO>
+			<!-- ACK skipping times, 0 is default  -->
+			<missAcksResend>			2			</missAcksResend>
+			
+			<!-- change MTU size, 0 is default(1400) -->
+			<mtu>						0			</mtu>
+
+			<!-- false: disable congestion control -->
+			<congestionControl>			false		</congestionControl>
+			<nodelay>					true		</nodelay>
+		</reliableUDP>
+
+		<!-- Certificate file required for HTTPS/WSS/SSL communication -->
+		<sslCertificate> key/server_cert.pem </sslCertificate>
+		<sslPrivateKey> key/server_key.pem </sslPrivateKey>
+	</channelCommon> 
+	
+	<!-- defined => kbe/res/server/kbengine_defs.xml -->
+	<dbmgr>
+		<account_system>
+			<!-- 账号Entity的名称
+			    (Name of AccountEntity)
+			 -->
+			<accountEntityScriptType>	Account	</accountEntityScriptType>
+			<!-- 账号找回密码相关
+				(Account reset password)
+			-->
+			<account_resetPassword>
+				<!-- 是否开放重设密码
+					(Whether open reset password)
+				-->
+				<enable>	true	</enable>
+			</account_resetPassword>
+			
+			<!-- 账号注册相关
+				(Account registration)
+			-->
+			<account_registration> 
+				<!-- 是否开放注册 
+					(Whether open registration)
+				-->
+				<enable>	true	</enable>
+				
+				<!-- 登录合法时游戏数据库找不到游戏账号则自动创建 
+					(When logged in, the game database can not find the game account is automatically created)
+				-->
+				<loginAutoCreate> true </loginAutoCreate>
+			</account_registration>
+		</account_system>
+		
+		<databaseInterfaces>
+			<default>
+				<!-- 如果为true，则为纯净的数据库，引擎不创建实体表 
+					（If true is pure database, engine does not create the entity table)
+				-->
+				<pure> false </pure>
+
+				<!-- 数据库类型 （mysql、redis）
+					（Database type(mysql, redis))
+				-->
+				<type> mysql </type>											<!-- Type: String -->
+
+				<!-- 数据库地址 
+					（Database address)
+				-->
+				<host> localhost </host>										<!-- Type: String -->
+				<port> 0 </port>												<!-- Type: Integer -->
+
+				<!-- 数据库账号验证 
+					（Database auth)
+				-->
+				<auth>  
+					<username> root </username>									<!-- Type: String -->
+					<password> sql540 </password>							<!-- Type: String -->
+					
+					<!-- 为true则表示password是加密(rsa)的, 可防止明文配置 
+						(is true, password is RSA)
+					-->
+					<encrypt> true </encrypt>
+				</auth>
+
+				<!-- 数据库名称 
+					(Database name)
+				-->
+				<databaseName> Servive </databaseName> 								<!-- Type: String -->
+				
+				<!-- 数据库允许的连接数 
+					(Number of connections allowed by the database)
+				-->
+				<numConnections> 5 </numConnections>							<!-- Type: Integer -->
+				
+				<!-- 字符编码类型 
+					(Character encoding type)
+				-->
+				<unicodeString>
+					<characterSet> utf8mb4 </characterSet> 						<!-- Type: String -->
+					<collation> utf8mb4_bin </collation> 							<!-- Type: String -->
+				</unicodeString>
+			</default>
+		</databaseInterfaces>
+	</dbmgr>
+	
+	<baseapp>
+		<!-- 自动存档的时间周期(秒)
+			（Automatic archiving time period(secs)） 
+			开发环境下一分钟存一次档
+			运营环境下尽量间隔长点
+		-->
+		<archivePeriod> 60 </archivePeriod> 							<!-- Type: Float -->
+		
+		<!-- 自动备份的时间(秒)
+			（Automatic backup time period(secs)） 
+		-->
+		<backupPeriod> 300 </backupPeriod>	
+	</baseapp>
+		
+	<cellapp>
+		<coordinate_system> 
+						
+			<!-- 实体位置更新方式，
+				0：直接同步高精度浮点数据，View范围无限制。 
+				1：优化同步，降低海量同屏时带宽使用，有小许精度损耗，View范围限制在500以内。 
+				2：智能选择模式，当同屏人数小于等于smartThreshold时使用0方式同步，否则使用1方式。View范围限制在500以内。
+			-->
+			<entity_posdir_updates> 
+				<type> 0 </type>
+				<smartThreshold> 10 </smartThreshold>
+			</entity_posdir_updates>
+		</coordinate_system>
+
+		<defaultViewRadius>			
+			<radius> 568.0 </radius>
+			<hysteresisArea> 500.0 </hysteresisArea>
+		</defaultViewRadius>
+	</cellapp>
+</root>

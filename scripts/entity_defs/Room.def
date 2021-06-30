@@ -1,0 +1,25 @@
+
+<root>
+
+    <Properties>
+        <roomKey>
+            <Type> UINT64 </Type>
+            <Flags> BASE </Flags>
+            <Persistent> false </Persistent>
+        </roomKey>
+    </Properties>
+
+    <BaseMethods>
+    
+    </BaseMethods>
+
+    <CellMethods>
+        <onEnter> 
+            <Arg> ENTITYCALL </Arg>
+        </onEnter>
+        
+        <onLeave>
+            <Arg> UINT64 </Arg> 
+        </onLeave>
+    </CellMethods>
+</root>

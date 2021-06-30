@@ -1,0 +1,23 @@
+<root>
+    
+    <Interfaces>
+        
+    </Interfaces>
+
+    <Properties>
+        
+        <!-- 数据库的版本：主要用来做表结构的调整 -->
+        <dbVersion>
+            <Type> UINT16 </Type>
+            <Flags> BASE </Flags>
+            <Persistent> true </Persistent>
+            <Default> 0 </Default>
+        </dbVersion>
+    </Properties>
+
+    <BaseMethods>
+        
+
+    </BaseMethods>
+    
+</root>

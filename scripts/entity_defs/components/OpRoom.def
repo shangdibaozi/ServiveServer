@@ -1,0 +1,30 @@
+<root>
+
+    <Properties>
+
+        <!-- 玩家上次所在的房间 -->
+        <roomKey>
+            <Type> UINT64 </Type>
+            <Flags> BASE </Flags>
+            <Persistent> true </Persistent>
+        </roomKey>
+    </Properties>
+
+    <BaseMethods>
+    
+        <enterRoom>
+            <Exposed/>
+            <Arg> UINT32 </Arg>
+        </enterRoom>
+
+        <leaveRoom>
+            <Exposed/>
+        </leaveRoom>
+    </BaseMethods>
+
+    <ClientMethods>
+        <enterRoomCallback>
+            <Arg> UINT8 </Arg>
+        </enterRoomCallback>
+    </ClientMethods>
+</root>

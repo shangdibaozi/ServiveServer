@@ -1,0 +1,93 @@
+<root>
+	<Properties>
+		<!-- 玩家昵称 -->
+		<nickName>
+			<Type> UNICODE </Type>
+			<Flags> BASE </Flags>
+			<Persistent> true </Persistent>
+		</nickName>
+
+		<!-- 玩家头像 -->
+		<headImgUrl>
+			<Type> STRING </Type>
+			<Flags> BASE </Flags>
+			<DefaultLength> 256 </DefaultLength>
+			<Persistent> true </Persistent>
+		</headImgUrl>
+
+		<!-- 玩家的角色列表。一个玩家在游戏里面可以拥有多个角色。 -->
+		<characters>
+			<Type> AVATAR_INFOS_LIST </Type>
+			<Flags> BASE </Flags>
+			<Default> </Default>
+			<Persistent> true </Persistent>
+		</characters>
+
+		<!-- 封禁类型：0表示无封禁，1-表示限时封禁（结合banEndTime），2-表示永久封禁 -->
+		<banType>
+			<Type> UINT8 </Type>
+			<Flags> BASE </Flags>
+			<Persistent> true </Persistent>
+			<Default> 0 </Default>
+		</banType>
+
+		<!-- 封禁结束时间 -->
+		<banEndTime>
+			<Type> UINT32 </Type>
+			<Flags> BASE </Flags>
+			<Persistent> true </Persistent>
+			<Default> 0 </Default>
+		</banEndTime>
+
+		<channel>
+			<Type> UNICODE </Type>
+			<Flags> BASE </Flags>
+			<Persistent> true </Persistent>
+		</channel>
+	</Properties>
+
+	
+	<BaseMethods>
+		<!-- 请求角色列表 -->
+		<reqAvatarList>
+			<Exposed/>
+		</reqAvatarList>
+
+		<!-- 请求创建角色 -->
+		<reqCreateAvatar>
+			<Exposed/>
+			<!-- 角色类型 -->
+			<Arg> UINT8 </Arg>
+			<!-- 角色名称 -->
+			<Arg> UNICODE </Arg>
+		</reqCreateAvatar>
+		
+		<!-- 选择角色开始游戏 -->
+		<selectAvatarGame>
+			<Exposed/>
+			<Arg> DBID </Arg>
+		</selectAvatarGame>
+
+		<!-- 请求删除角色 -->
+		<reqRemoveAvatar>
+			<Exposed/>
+			<Arg> DBID </Arg>
+		</reqRemoveAvatar>
+
+	</BaseMethods>
+	
+
+	<ClientMethods>
+		
+		<onReqAvatarList>
+			<Arg> AVATAR_INFOS_LIST </Arg>
+		</onReqAvatarList>
+		
+
+		<onRemoveAvatar>
+			<Arg> DBID </Arg>
+		</onRemoveAvatar>
+
+	</ClientMethods>
+
+</root>

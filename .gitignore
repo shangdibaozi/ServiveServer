@@ -1,0 +1,17 @@
+
+
+# 不提交引擎文件
+kbengine/
+# 不提交的目录
+logs/
+__pycache__/
+.svn
+.vscode
+start_server_background.bat
+start_server.bat
+*.code-workspace
+safe_kill.bat
+guiconsole.bat
+*.dmp
+guiconsole.bat.lnk
+_tmp/

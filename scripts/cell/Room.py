@@ -15,7 +15,7 @@ class Room(KBEngine.Entity):
         self.avatars[entity.id] = entity
 
         # entity.opRoom.enterRoomSuccess()
-        entity.opRoom.client.enterRoomCallback(0)
+        # entity.opRoom.client.enterRoomCallback(0)
 
     def onLeave(self, eid):
         if eid in self.avatars:

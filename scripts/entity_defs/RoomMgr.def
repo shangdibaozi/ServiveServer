@@ -5,6 +5,9 @@
     </Properties>
 
     <BaseMethods>
-        
+        <enterRoom>
+            <Arg> ENTITYCALL </Arg>
+            <Arg> ROOM_KEY </Arg>
+        </enterRoom>
     </BaseMethods>
 </root>

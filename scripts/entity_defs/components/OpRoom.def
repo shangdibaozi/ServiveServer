@@ -14,7 +14,7 @@
     
         <enterRoom>
             <Exposed/>
-            <Arg> UINT32 </Arg>
+            <Arg> ROOM_KEY </Arg>
         </enterRoom>
 
         <leaveRoom>
@@ -24,7 +24,7 @@
 
     <ClientMethods>
         <enterRoomCallback>
-            <Arg> UINT8 </Arg>
+            <Arg> UINT32 </Arg>
         </enterRoomCallback>
     </ClientMethods>
 </root>

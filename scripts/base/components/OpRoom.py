@@ -12,9 +12,6 @@ class OpRoom(KBEngine.EntityComponent):
     def onAttached(self, owner):
         log.DEBUG_MSG(f'OpRoom onAttached: owner={owner.id}')
 
-        if self.roomKey > 0:
-            Utils.roomMgr().checkRoomExist(self, self.roomKey)
-
     def onDetached(self, owner):
         log.DEBUG_MSG(f'OpRoom onDetached: owner={owner.id}')
 
@@ -29,7 +26,7 @@ class OpRoom(KBEngine.EntityComponent):
 
     def enterRoom(self, roomKey):
         log.DEBUG_MSG(f'OpRoom enterRoom roomKey={roomKey}')
-        Utils.roomMgr().enterRoom(self.owner)
+        Utils.roomMgr().enterRoom(self.owner, roomKey)
 
     def leaveRoom(self):
         if self.roomKey == 0:
@@ -55,5 +52,6 @@ class OpRoom(KBEngine.EntityComponent):
         self.roomKey = 0
         log.DEBUG_MSG('OpRoom roomNotExist')
 
-
+    def enterRoomCallback(self, type):
+        self.client.enterRoomCallback(type)
 

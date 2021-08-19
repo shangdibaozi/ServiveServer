@@ -27,6 +27,10 @@ class RoomMgr(KBEngine.Entity):
         self.rooms: Dict[int, RoomData] = {}
         self.curRoomData = None
 
+        self.roomKey = 10000
+        # test
+        self.createRoom()
+
     def enterRoom(self, avatar, roomKey):
         roomData = self.rooms.get(roomKey, None)
         if roomData is None:
@@ -52,11 +56,13 @@ class RoomMgr(KBEngine.Entity):
                 log.WARNING_MSG(f'RoomMgr::leaveRoom roomEntity is None, roomKey: {roomKey}')
         
     def createRoom(self):
-        roomKey = KBEngine.genUUID64()
+        # roomKey = KBEngine.genUUID64()
+        self.roomKey += 10
+        log.DEBUG_MSG(f'createRoom roomKey: {self.roomKey}')
         KBEngine.createEntityAnywhere('Room', {
-            'roomKey': roomKey
-        }, Functor.Functor(self.onRoomCreatedCB, roomKey))
-        self.rooms[roomKey] = RoomData(roomKey)
+            'roomKey': self.roomKey
+        }, Functor.Functor(self.onRoomCreatedCB, self.roomKey))
+        self.rooms[self.roomKey] = RoomData(self.roomKey)
     
     def onRoomCreatedCB(self, roomKey, room):
         """

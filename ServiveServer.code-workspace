@@ -1,0 +1,33 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		// for pylance 
+		"python.analysis.extraPaths": [
+			"E:/CocosCreator/Money/Servive/ServiveServer/scripts/user_type",
+			"E:/CocosCreator/Money/Servive/ServiveServer/scripts/server_common",
+			"E:/CocosCreator/Money/Servive/ServiveServer/scripts/common",
+			"E:/CocosCreator/Money/Servive/ServiveServer/scripts/data",
+			"E:/CocosCreator/Money/Servive/ServiveServer/scripts/base",
+			"E:/CocosCreator/Money/Servive/ServiveServer/scripts/interface"
+		],
+		"files.associations": {
+			"*.def": "html",
+			"*.XML": "html"
+		},
+		"python.pythonPath": "python3",
+		"files.exclude": {
+			"**/.git": true,
+			"**/.svn": true,
+			"**/.hg": true,
+			"**/CVS": true,
+			"**/.DS_Store": true,
+			"**/__pycache__" : true,
+			"**/_tmp": true
+		},
+		"python.languageServer": "Pylance",
+	}
+}

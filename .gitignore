@@ -7,11 +7,11 @@ logs/
 __pycache__/
 .svn
 .vscode
-start_server_background.bat
-start_server.bat
-*.code-workspace
-safe_kill.bat
-guiconsole.bat
+# start_server_background.bat
+# start_server.bat
+# *.code-workspace
+# safe_kill.bat
+# guiconsole.bat
 *.dmp
 guiconsole.bat.lnk
 _tmp/

@@ -5,8 +5,9 @@
         <!-- 玩家上次所在的房间 -->
         <roomKey>
             <Type> UINT64 </Type>
-            <Flags> BASE </Flags>
+            <Flags> BASE_AND_CLIENT </Flags>
             <Persistent> true </Persistent>
+            <Default> 1 </Default>
         </roomKey>
     </Properties>
 
